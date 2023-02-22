@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,6 +15,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        useMaterial3: true
+      ),
       title: 'Flutter Demo',
       home: BlocProvider(
           create: (_) => CounterCubit(),
@@ -45,7 +50,14 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have pushed the button this many times:',
             ),
             BlocBuilder<CounterCubit, int>(
-              builder: (context, count) => Text('$count'),
+              buildWhen: (prev,current){
+                print("prev $prev");
+                print("current $current");
+                return prev !=current;
+              },
+              builder: (context, count) {
+                return Text('$count');
+              },
             ),
           ],
         ),
