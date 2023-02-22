@@ -1,8 +1,19 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CounterCubit extends Cubit<int> {
-  CounterCubit() : super(0);
+import 'main_state.dart';
 
-  void increment() => emit(state + 1);
-  void decrement() => emit(state - 1);
+class CounterCubit extends Cubit<MainState> {
+  CounterCubit() : super(MainState(counter: 0, name: ""));
+
+  void increment() {
+    emit(state.copyWith(counter: state.counter+1));
+  }
+
+  void decrement() {
+    emit(state.copyWith(counter: state.counter-1));
+  }
+
+  void addName(String name) {
+    emit(state.copyWith(name: name));
+  }
 }
