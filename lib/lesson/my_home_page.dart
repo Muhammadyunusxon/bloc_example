@@ -19,7 +19,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    print("main build");
+    debugPrint("main build");
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -36,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 return current.counter != prev.counter;
               },
               builder: (context, state) {
-                print("bloc build counter");
+                debugPrint("bloc build counter");
                 return Text(
                   '${state.counter}',
                   style: Theme.of(context).textTheme.headlineMedium,
@@ -48,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 return current.name != prev.name;
               },
               builder: (context, state) {
-                print("bloc build name");
+                debugPrint("bloc build name");
                 return Text(
                   state.name,
                   style: Theme.of(context).textTheme.headlineMedium,

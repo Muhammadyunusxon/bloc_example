@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    print("main build");
+    debugPrint("main build");
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
                 return current.title != prev.title;
               },
               builder: (context, state) {
-                print("bloc build counter");
+                debugPrint("bloc build counter");
                 return Text(
                   state.title,
                   style: Theme.of(context).textTheme.headlineMedium,
@@ -53,41 +53,38 @@ class _HomePageState extends State<HomePage> {
             onPressed: () {
               showDialog(
                   context: context,
-                  builder: (_) => BlocProvider.value(
-                      value: BlocProvider.of<CheckerCubit>(context),
-                      child: AlertDialog(
-                        title: TextFormField(
-                          controller: name,
-                        ),
-                        actions: [
-                          ElevatedButton(
-                              onPressed: () {
-                                context.read<CheckerCubit>().check(name.text);
-                                Navigator.pop(context);
-                                if (context.read<CheckerCubit>().check(name.text)) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: const Text('Awesome Snackbar!'),
-                                      action: SnackBarAction(
-                                        label: 'Well done',
-                                        onPressed: () {
-                                          // Code to execute.
-                                        },
-                                      ),
-                                    ),
-                                  );
-                                } else {
-                                  showDialog(
-                                      context: context,
-                                      builder: (_) => AlertDialog(
-                                            title: Text("Error"),
-                                          ));
-                                }
+                  builder: (_) => AlertDialog(
+                    title: TextFormField(
+                      controller: name,
+                    ),
+                    actions: [
+                      ElevatedButton(
+                          onPressed: () {
+                            context.read<CheckerCubit>().check(name.text);
+                            Navigator.pop(context);
+                            if (context.read<CheckerCubit>().check(name.text)) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: const Text('Awesome Snackbar!'),
+                                  action: SnackBarAction(
+                                    label: 'Well done',
+                                    onPressed: () {
+                                    },
+                                  ),
+                                ),
+                              );
+                            } else {
+                              showDialog(
+                                  context: context,
+                                  builder: (_) => const AlertDialog(
+                                        title: Text("Error"),
+                                      ));
+                            }
 
-                              },
-                              child: Text("Save"))
-                        ],
-                      )));
+                          },
+                          child: const Text("Save"))
+                    ],
+                  ));
             },
           ),
         ],
