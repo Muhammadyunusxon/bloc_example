@@ -40,18 +40,6 @@ class _HomePageState extends State<HomePage> {
                 );
               },
             ),
-            BlocBuilder<CheckerCubit, CheckerState>(
-              buildWhen: (prev, current) {
-                return true;
-              },
-              builder: (context, state) {
-                print("bloc build counter");
-                return Text(
-                  state.isCheck.toString(),
-                  style: Theme.of(context).textTheme.headlineMedium,
-                );
-              },
-            ),
           ],
         ),
       ),
