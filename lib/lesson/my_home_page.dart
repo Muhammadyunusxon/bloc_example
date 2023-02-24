@@ -89,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 context.read<CounterCubit>().addName(name.text);
                                 Navigator.pop(context);
                               },
-                              child: Text("Save"))
+                              child: const Text("Save"))
                         ],
                       ));
             },
