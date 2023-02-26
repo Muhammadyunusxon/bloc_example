@@ -26,7 +26,7 @@ class MyDropDown extends StatelessWidget {
       dropdownColor: Colors.indigoAccent,
       iconEnabledColor: Colors.white,
       borderRadius: BorderRadius.circular(14),
-      decoration: InputDecoration(),
+      decoration: const InputDecoration(),
     );
   }
 }
